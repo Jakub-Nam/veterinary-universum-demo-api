@@ -1,0 +1,40 @@
+# Build
+bin/
+obj/
+out/
+publish/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS-generated
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# ASP.NET Secrets
+*.secret.json
+
+# Entity Framework
+Migrations/
+
+# App settings (lokalne œrodowisko — np. z has³ami do DB)
+appsettings.Development.json
+
+# Dotnet CLI
+*.lock.json
+
+# Logs
+*.log
+
+# Test results
+TestResults/
+coverage/

@@ -168,3 +168,4 @@ C:\Users\bubu1\source\repos\veterinary-universum-articles\veterinary-universum-a
 C:\Users\bubu1\source\repos\veterinary-universum-articles\veterinary-universum-articles\obj\Debug\net8.0\veterinary-universum-articles.pdb
 C:\Users\bubu1\source\repos\veterinary-universum-articles\veterinary-universum-articles\obj\Debug\net8.0\veterinary-universum-articles.genruntimeconfig.cache
 C:\Users\bubu1\source\repos\veterinary-universum-articles\veterinary-universum-articles\obj\Debug\net8.0\ref\veterinary-universum-articles.dll
+C:\Users\bubu1\source\repos\veterinary-universum-articles\veterinary-universum-articles\obj\Debug\net8.0\veterinary-universum-articles.sourcelink.json

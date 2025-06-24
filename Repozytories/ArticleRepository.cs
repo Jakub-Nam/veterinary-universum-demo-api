@@ -6,7 +6,7 @@ namespace veterinary_universum_articles.Repositories
     {
         Task<List<Article>> GetAllAsync(CancellationToken cancellationToken);
         Task<Article?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
-        // nie rozumiem czemu chce ?
+        // nie rozumiem czemu chce <Article ->?<-->
         Task<Article> AddArticleAsync(Article article, CancellationToken cancellationToken);
 
     }

@@ -92,9 +92,6 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
-          },
-          "isFirst": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false
