@@ -1,19 +1,29 @@
 ﻿using MediatR;
-using veterinary_universum_articles.Features.Articles.CreateArticle;
 using veterinary_universum_articles.Models;
 using veterinary_universum_articles.Repositories;
 
-public class CreateArticleHandler : IRequestHandler<CreateArticleCommand, Article>
+namespace veterinary_universum_articles.Features.Articles.CreateArticle
 {
-    private readonly IArticleRepository _repository;
-
-    public CreateArticleHandler(IArticleRepository repository)
+    public class CreateArticleHandler : IRequestHandler<CreateArticleCommand, Article>
     {
-        _repository = repository;
-    }
+        private readonly IArticleRepository _repository;
 
-    public async Task<Article> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
-    {
-        return await _repository.AddArticleAsync(request.Article, cancellationToken);
+        public CreateArticleHandler(IArticleRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<Article> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
+        {
+            var article = new Article
+            {
+                Id = Guid.NewGuid(),
+                Title = request.Title,
+                Content = request.Content,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            return await _repository.AddArticleAsync(article, cancellationToken);
+        }
     }
 }

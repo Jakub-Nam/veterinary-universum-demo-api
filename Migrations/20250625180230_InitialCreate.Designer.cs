@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace veterinary_universum_articles.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250622102008_InitialCreate")]
+    [Migration("20250625180230_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,11 +26,9 @@ namespace veterinary_universum_articles.Migrations
 
             modelBuilder.Entity("veterinary_universum_articles.Models.Article", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -42,9 +40,6 @@ namespace veterinary_universum_articles.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isFirst")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

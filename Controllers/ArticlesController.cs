@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using veterinary_universum_articles.Features.Articles.CreateArticle;
+using veterinary_universum_articles.Features.Articles.GetAllArticles;
 using veterinary_universum_articles.Models;
 
 namespace veterinary_universum_articles.Controllers;
@@ -11,17 +12,18 @@ namespace veterinary_universum_articles.Controllers;
 public class ArticlesController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IMediator _mediator;
 
-    public ArticlesController(AppDbContext context)
+    public ArticlesController(AppDbContext context, IMediator mediator)
     {
         _context = context;
+        _mediator = mediator;
     }
 
-    // GET: /api/articles
-    [HttpGet]
-    public async Task<IActionResult> GetArticles()
+    [HttpGet("/api/articles")]
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var articles = await _context.Articles.ToListAsync();
+        var articles = await _mediator.Send(new GetAllArticlesQuery(), cancellationToken);
         return Ok(articles);
     }
 }
@@ -40,7 +42,7 @@ public class ArticleController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetArticle(int id)
+    public async Task<IActionResult> GetArticle(Guid id)
     {
         var article = await _context.Articles.FindAsync(id);
         if (article == null)
@@ -49,11 +51,12 @@ public class ArticleController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateArticle([FromBody] Article article)
+    public async Task<IActionResult> CreateArticle([FromBody] CreateArticleCommand command, CancellationToken cancellationToken)
     {
-        var created = await _mediator.Send(new CreateArticleCommand(article));
-        return CreatedAtAction(nameof(CreateArticle), new { id = created.Id }, created);
+        var createdArticle = await _mediator.Send(command, cancellationToken);
+        return StatusCode(201, createdArticle);
     }
+
 
     //[HttpPut("{id}")]
     //public async Task<IActionResult> UpdateArticle(Guid id, [FromBody] Article article)

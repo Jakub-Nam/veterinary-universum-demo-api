@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using veterinary_universum_articles.Models;
-
-namespace veterinary_universum_articles.Features.Articles.CreateArticle
+public class CreateArticleCommand : IRequest<Article>
 {
-    public record CreateArticleCommand(Article Article) : IRequest<Article>;
+    public string Title { get; set; } = null!;
+    public string Content { get; set; } = null!;
 }
